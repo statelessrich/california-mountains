@@ -14,13 +14,18 @@ export default function Home() {
   }
 
   function History() {
-    const settings = {
-      dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: window.innerWidth > 640 ? 4 : 1,
-      centerMode: true,
-    };
+    const [carouselSettings, setCarouselSettings] = useState({});
+
+    // set carousel settings on pageload, since window object is not available on server
+    useEffect(() => {
+      setCarouselSettings({
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: window?.innerWidth > 640 ? 4 : 1,
+        centerMode: true,
+      });
+    }, []);
 
     return (
       <div
@@ -41,7 +46,7 @@ export default function Home() {
         </div>
 
         <div className="carousel pt-[27px] pb-[36px] w-full absolute bottom-0 bg-[#414f6b] opacity-80 flex flex-col justify-center">
-          <Slider {...settings}>
+          <Slider {...carouselSettings}>
             <div>
               <Image src="/thumb-1.png" alt="Slide 1" width={253} height={169} />
             </div>
@@ -177,21 +182,28 @@ export default function Home() {
 
   function StickyNav() {
     const [isSticky, setIsSticky] = useState(false);
-    const navPosition = window.innerWidth > 640 ? 826 : 450;
+    const [navPosition, setNavPosition] = useState(450);
+
+    // set sticky positioning trigger based on screen size. done in useEffect when window object is available.
+    useEffect(() => {
+      if (window?.innerWidth > 640) {
+        setNavPosition(826);
+      }
+    }, []);
 
     // check if nav should be sticky on scroll
     useEffect(() => {
-      window.addEventListener("scroll", checkStick);
+      const checkStick = () => {
+        const windowHeight = window?.scrollY;
+        setIsSticky(windowHeight > navPosition);
+      };
+
+      window?.addEventListener("scroll", checkStick);
 
       return () => {
-        window.removeEventListener("scroll", checkStick);
+        window?.removeEventListener("scroll", checkStick);
       };
-    }, []);
-
-    const checkStick = () => {
-      const windowHeight = window?.scrollY;
-      setIsSticky(windowHeight > navPosition);
-    };
+    }, [navPosition]);
 
     return (
       <div
