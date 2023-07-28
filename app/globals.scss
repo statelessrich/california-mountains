@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$blue: #414f6b;
+$gray: #b0b4be;
+
+/* Lato */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap");
+
+/* Oswald */
+@font-face {
+  font-family: "Oswald";
+  src: url("/oswald.bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.hero {
+  background-position: 40% 0%;
+  background-size: 207%;
+
+  @apply sm:bg-cover sm:bg-top;
+}
+
+.links {
+  @apply font-black italic;
+}
+
+h2 {
+  font-family: "Oswald", sans-serif;
+  position: relative;
+}
+
+.big-num {
+  @apply text-[125px] opacity-50;
+  color: $blue;
+}
+
+.title {
+  @apply absolute bottom-[60px] text-[32px];
+  color: $blue;
+}
+
+.mountain-tabs {
+  background-color: $blue;
+  color: $gray;
+  font-size: 20px;
+
+  .tab {
+    font-family: "Oswald", sans-serif;
+    @apply px-[23px] flex items-center h-[40px];
+
+    &.active {
+      color: $blue;
+      text-decoration: underline;
+      background-color: $gray;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.mountain-content {
+  background-position: 40% 0%;
+  background-size: 207%;
+  @apply sm:bg-cover sm:bg-center h-0 overflow-hidden;
+
+  &.active {
+    @apply h-[400px] sm:h-[550px];
+  }
+
+  .schedule {
+    margin: 20px;
+    max-width: 375px;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    @apply sm:py-[24px] sm:px-[38px] sm:ml-[19vw] sm:mt-[125px];
+
+    h2 {
+      font-size: 32px;
+      color: $blue;
+    }
+  }
+}
+
+.footer {
+  background-color: $blue;
+}
+
+.slick-dots li button:before {
+  color: #fff !important;
+  opacity: 0.2 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+.slick-slider .slick-arrow {
+  display: none;
+}
