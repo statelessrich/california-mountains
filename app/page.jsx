@@ -45,7 +45,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="carousel pt-[27px] pb-[36px] w-full absolute bottom-0 bg-[#414f6b] opacity-80 flex flex-col justify-center">
+        <div className="carousel pt-[27px] pb-[36px] w-full absolute bottom-0 bg-[#414f6b] bg-opacity-80 flex flex-col justify-center">
           <Slider {...carouselSettings}>
             <div>
               <Image src="/thumb-1.png" alt="Slide 1" width={253} height={169} />
